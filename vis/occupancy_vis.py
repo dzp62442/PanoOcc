@@ -150,6 +150,9 @@ def vis_nuscene():
         file = '345_pred.npz' 
 
         data = np.load(file)
+        print("Keys in the npz file:")
+        for k, key in enumerate(data.keys()):
+            print(f"Key {k}: {key}")
         semantics = data['semantics']
 
         # correspond gt file
