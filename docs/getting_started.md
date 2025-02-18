@@ -1,5 +1,7 @@
 # NuScenes
 
+注：WSL2 中疑似 NCCL 配置错误，将项目代码中的所有 `nccl` 替换为 `gloo` 即可运行。
+
 ## 1. NuScenes Occupancy Benchmark (CVPR2023 workshop)
 **a. Train PanoOcc with 8 GPUs.**
 ```shell

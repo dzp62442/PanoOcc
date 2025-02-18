@@ -2,8 +2,8 @@
 
 **a. Create a conda virtual environment and activate it.**
 ```shell
-conda create -n occ python=3.8 -y
-conda activate occ
+conda create -n panoocc python=3.8 -y
+conda activate panoocc
 ```
 
 **b. Install PyTorch and torchvision following the [official instructions](https://pytorch.org/).**
@@ -20,8 +20,7 @@ pip install mmsegmentation==0.14.1
 
 **d. Install others.**
 ```shell
-pip install timm
-pip install einops
+pip install timm einops simplejson ipdb
 pip install torch-scatter==2.0.7 -f https://data.pyg.org/whl/torch-1.9.0%2Bcu111/torch_scatter-2.0.7-cp38-cp38-linux_x86_64.whl
 ```
 

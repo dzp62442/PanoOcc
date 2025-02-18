@@ -9,7 +9,7 @@ data_path: ./data/nuscenes
 cp projects/configs/label_mapping/nuscenes.yaml ./data/nuscenes/
 ```
 **dataset structure**
-```
+```shell
 nuscenes
 ├── can_bus/
 ├── maps/
@@ -19,25 +19,25 @@ nuscenes
 ├── sweeps/
 ├── v1.0-trainval/
 ├── v1.0-test/
-├── nuscenes_infos_temporal_train.pkl
-├── nuscenes_infos_temporal_val.pkl
-├── nuscenes_infos_temporal_test.pkl
+├── nuscenes_infos_temporal_train.pkl  # new
+├── nuscenes_infos_temporal_val.pkl  # new
+├── nuscenes_infos_temporal_test.pkl  # new
 ├── nuscenes.yaml
 ```
 
 *We genetate custom annotation files which are different from mmdet3d's*
 ```
-python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag nuscenes --version v1.0 --canbus ./data
+python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag nuscenes --version v1.0 --canbus ./data/nuscenes
 ```
 
 Using the above code will generate `nuscenes_infos_temporal_{train,val}.pkl`.
 
 ## 2. NuScenes Occupancy Benchmark (CVPR2023 workshop)
-Download the annotations [HERE](https://opendatalab.com/CVPR2023-3D-Occupancy/cli)
-- download gts & annotations is enough, no need for the img, others are same in the nuScenes.
+Download the annotations [HERE](https://github.com/CVPR2023-3D-Occupancy-Prediction/CVPR2023-3D-Occupancy-Prediction?tab=readme-ov-file#download)
+- download `gts` & `annotations` is enough, no need for the img, others are same in the nuScenes.
 
 **dataset structure**
-```
+```shell
 occ3d-nus
 ├── gts/
 ├── maps/
@@ -45,14 +45,19 @@ occ3d-nus
 ├── panoptic/
 ├── samples/
 ├── v1.0-trainval/
-├── occ_infos_temporal_train.pkl
-├── occ_infos_temporal_val.pkl
+├── occ_infos_temporal_train.pkl  # new
+├── occ_infos_temporal_val.pkl  # new
+├── occ_infos_temporal_trainval.pkl  # new
+└── annotations.json  # train/val subset
 
-├── occ3d-test/
-│ ├── maps/
-│ ├── samples/
-│ ├── v1.0-test/
-│ └── annotations.json
+occ3d-test
+├── maps/
+├── lidarseg/
+├── panoptic/
+├── samples/
+├── v1.0-test/
+├── occ_infos_temporal_test.pkl  # new
+└── annotations.json  # test subset
 ```
 
 Generate the info files for training and validation:
