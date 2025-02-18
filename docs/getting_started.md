@@ -1,6 +1,6 @@
 # NuScenes
 
-注：WSL2 中疑似 NCCL 配置错误，将项目代码中的所有 `nccl` 替换为 `gloo` 即可运行。
+注：WSL2 中疑似 NCCL 配置错误，将 `projects/configs/_base_/default_runtime.py` 中的 `nccl` 替换为 `gloo` 即可运行。
 
 ## 1. NuScenes Occupancy Benchmark (CVPR2023 workshop)
 **a. Train PanoOcc with 8 GPUs.**
@@ -16,10 +16,15 @@ You can evaluate the F-score at the same time by adding `--eval_fscore`.
 **c. Test with 8 GPUs for test split.**
 ```shell
 ./tools/dist_test_dense.sh ./projects/configs/PanoOcc/Occupancy/Occ3d-nuScenes/PanoOcc_small.py work_dirs/PanoOcc_small/epoch_24.pth 8 --format-only --eval-options 'submission_prefix=./occ_submission'
- ```
+```
 
- ## 2. NuScenes Lidar Segmentation Benchmark
- **a. Train PanoOcc with 8 GPUs.**
+**d. 可视化**
+
+1. 运行 `./tools/dist_test_dense.sh` 时加上 `--format-only --eval-options 'submission_prefix=./occ_submission'` 参数，生成 npz 文件
+2. 修改 `vis/occupancy_vis.py` 中的 npz 文件路径，然后运行程序。若遇到 swrast 库相关报错，参考[解决方案](https://github.com/GuanxingLu/ManiGaussian/issues/2)
+
+## 2. NuScenes Lidar Segmentation Benchmark
+**a. Train PanoOcc with 8 GPUs.**
 ```shell
 ./tools/dist_train.sh ./projects/configs/PanoOcc/Panoptic/PanoOcc_small_4f.py 8
 ```
